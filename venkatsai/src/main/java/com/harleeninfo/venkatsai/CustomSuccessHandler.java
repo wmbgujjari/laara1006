@@ -32,6 +32,10 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
 				redirectUrl = "/adminDashboard";
 				break;
 			}
+			else if (grantedAuthority.getAuthority().equals("EDITOR")) {
+				redirectUrl = "/recruiterProfile";
+				break;
+			}			
 		}
 		System.out.println("redirectUrl " + redirectUrl);
 		if (redirectUrl == null) {

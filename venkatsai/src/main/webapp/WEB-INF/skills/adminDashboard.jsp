@@ -14,7 +14,7 @@
 <title>Admin DashBoard</title>
 </head>
 <body>
-<form:form  modelAttribute="adminForm" class="form-signin">
+
 	<h3>Admin DashBoard</h3>
 	<table border="1" cellpadding="2" cellspacing="2">
 		<tr>
@@ -30,7 +30,7 @@
 			<tr>
 				<td><c:set var="id" value="${profile.id }" scope="request"></c:set> ${profile.id }</td>
 				<td>${profile.companyName }</td>
-				 <td>${profile.companyEmail }</td>
+				 <td>${profile.companyemail }</td>
 				<td>${profile.country }</td>
 				<td>${profile.state }</td>
 				<td>${profile.city }</td>
@@ -39,12 +39,12 @@
            -   <!--  <form:form method="GET"  action="${contextPath}/adminDashboardupdate/${profile.id }" >
                 <input type="submit" value="Enable" style="background:none;border:0px;cursor: pointer;"/>
               </form:form>-->
-               <a href="<c:url value="/adminDashboardupdate/${profile.id }"/>" >Enable</a>
+               <a href="adminDashboardupdate/${profile.id}" >Enable</a>
               
            </td>				
 			</tr>
 		</c:forEach>
 	</table>
-</form:form>
+
 </body>
 </html>

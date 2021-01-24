@@ -1,6 +1,10 @@
 package com.harleeninfo.venkatsai.jobs.controller;
 
 
+import java.util.List;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,9 +13,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.harleeninfo.venkatsai.jobs.entity.RecProfileJob;
 import com.harleeninfo.venkatsai.jobs.entity.User;
+import com.harleeninfo.venkatsai.jobs.service.ComenyDtBoService;
 import com.harleeninfo.venkatsai.jobs.service.UserService;
 import com.harleeninfo.venkatsai.jobs.validator.UserValidator;
+import com.harleeninfo.venkatsai.vo.CommanResponsVo;
+import com.harleeninfo.venkatsai.vo.RecProfileJobVo;
 
 @Controller
 public class UserController {
@@ -20,6 +29,9 @@ public class UserController {
 
     @Autowired
     private UserValidator userValidator;
+    
+    @Autowired
+    ComenyDtBoService commDtService;
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
@@ -54,7 +66,18 @@ public class UserController {
 
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
     public String welcome(Model model) {
+    	try {
+    	CommanResponsVo com = commDtService.getJpobPostingByid("1");
+    	 List<RecProfileJobVo> profile=(List<RecProfileJobVo>) com.getRespons();
+    	 model.addAttribute("profile", profile);
+    	
+    	}catch (Exception e) {
+    		System.out.println(e.getMessage());
+			// TODO: handle exception
+		}
         return "welcome";
     }
+    
+   
 }
 

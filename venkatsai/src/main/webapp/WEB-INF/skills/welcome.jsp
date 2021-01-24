@@ -172,12 +172,13 @@
 <!-- /container -->
 
 <br>
+<c:forEach items="${profile}" var="profile" >
 <div class="col-sm-6" style="float:left">
     <div class="card card-cascade wider">
                   <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
               <div class="icon"><img class="icon" src="${contextPath}/images/prasad.jpg" > </div>
               <h4 class="description">Venkat Sai Institute</h4>
-              <p class="description">Visakhapatnam</p>
+              <p class="description">${profile.companyemail}</p>
               </div>
   	<div class="view view-cascade overlay">
     <img class="card-img-top" src="${contextPath}/images/img1.jpg" alt="Card image cap">
@@ -191,6 +192,7 @@
         <a href="#" class="btn btn-primary">Apply</a>
       </div>
    </div> 
+   </c:forEach>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" ></script>
 <script src="${contextPath}/resources/js/popper.min.js" ></script>
 <script src="${contextPath}/resources/js/bootstrap.min.js"></script>

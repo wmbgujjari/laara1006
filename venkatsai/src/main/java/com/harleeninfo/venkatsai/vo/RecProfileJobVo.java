@@ -1,4 +1,4 @@
-package com.jobskil.domain;
+package com.harleeninfo.venkatsai.vo;
 
 import java.io.Serializable;
 
@@ -8,38 +8,46 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-@Entity
-@Table(name="rec_profile_job")
-public class RecProfileJob implements Serializable{
+
+import org.springframework.web.multipart.MultipartFile;
+
+public class RecProfileJobVo implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	@Id
-	
-	@Column(name="id")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+
 	long id;
-	@Column(name="companyname")
+	
 	String companyname;
-	@Column(name="companyemail")
+	
 	String companyemail ;
-	@Column(name="mobileno")
+	
 	String mobileno ;
-	@Column(name="jobtype")
+	
 	String jobtype ;
-	@Column(name="descr")
+	
 	String descr;
-	@Column(name="status ")
+	
 	String status ;
-	@Column(name="image_name")
+	
+
 	String imageNmae;
 	
-	public String getImageNmae() {
+	
+	 public String getImageNmae() {
 		return imageNmae;
 	}
 	public void setImageNmae(String imageNmae) {
 		this.imageNmae = imageNmae;
+	}
+	MultipartFile file;
+	 
+	public MultipartFile getFile() {
+		return file;
+	}
+	public void setFile(MultipartFile file) {
+		this.file = file;
 	}
 	public long getId() {
 		return id;

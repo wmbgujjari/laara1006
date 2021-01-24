@@ -58,11 +58,32 @@ public class JobListController {
 		return list;
     }	
 	@GetMapping("/enableRec")
-	public int  updateRecProfile(@RequestParam  int id) {
+	public CommanResponsVo  updateRecProfile(@RequestParam  int id) {
 		System.out.println("updating"+id);
-		int a= jobList.updateRecProfile("true", id);
-		System.out.println("updated Scess"+a);
-		return a;
+		
+		
+
+		
+		
+		CommanResponsVo comm=new CommanResponsVo();
+		System.out.println("post man");
+		try {
+			boolean a= jobList.updateRecProfile(id);
+		if(a) {
+			comm.setStatus("true");
+			comm.setError("Sucess");
+		}else{
+			comm.setStatus("flase");
+			comm.setError("Failure..");
+		}
+		}catch (Exception e) {
+			comm.setStatus("flase");	
+			comm.setError("Somthing weant wrog try again......");
+			// TODO: handle exception
+		}
+		//comm.setRespons(rec);
+		return comm;
+
 		
 	}
 	

@@ -16,7 +16,7 @@ public class CommanDaoImpl implements CommanDao{
 		this.sessionFactory = sf;
 	}
 	
-	
+	//
 	@Override
 	public boolean commanUpdate(String sql) {
 		Session session = null;

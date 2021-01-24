@@ -31,6 +31,15 @@ public class RecProfile implements Serializable{
 	@Column(name="city")
 	String city;
 	
+	@Column(name="status")
+	String status;
+	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public int getId() {
 		return id;
 	}

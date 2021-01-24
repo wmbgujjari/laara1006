@@ -1,4 +1,4 @@
-package com.jobskil.domain;
+package com.harleeninfo.venkatsai.vo;
 
 import java.io.Serializable;
 
@@ -8,8 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-@Entity
-@Table(name="rec_profile_job")
+
 public class RecProfileJob implements Serializable{
 	/**
 	 * 

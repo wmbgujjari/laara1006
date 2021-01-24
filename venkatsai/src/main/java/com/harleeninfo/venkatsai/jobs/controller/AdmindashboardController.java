@@ -6,14 +6,20 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.harleeninfo.venkatsai.jobs.repository.UserRepository;
+import com.harleeninfo.venkatsai.jobs.service.ComenyDtBoService;
+import com.harleeninfo.venkatsai.vo.CommanResponsVo;
 import com.harleeninfo.venkatsai.jobs.entity.RecProfile;
 import com.harleeninfo.venkatsai.jobs.entity.User;
 
 import java.io.PrintStream;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
 
+import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
@@ -31,25 +37,20 @@ public class AdmindashboardController {
 
 	RestTemplate restTemplate;
     UserRepository user;
+    
+    @Autowired
+    ComenyDtBoService commDtService;
 	
     @RequestMapping(value = "/adminDashboard", method = RequestMethod.GET)
    public String registrationsave(RecProfile adminForm, BindingResult bindingResult, Model model)
         throws JsonMappingException, JsonProcessingException
     {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<List<RecProfile>> respones = restTemplate.exchange("http://localhost:8890/getCompanyDetails", HttpMethod.GET, null,
-				new ParameterizedTypeReference<List<RecProfile>>(){});
-  
-        HttpStatus httpStatus = respones.getStatusCode();
-		System.out.println("Status Code: " + httpStatus);
 
-		List<RecProfile> products = respones.getBody();        
+
+		List<RecProfile> products = commDtService.findByUser("");        
         
         model.addAttribute("products", products);
-        System.out.println("response"+respones);
+      //  System.out.println("response"+respones);
         if(bindingResult.hasErrors())
             return "adminDashboard";
         else
@@ -57,21 +58,41 @@ public class AdmindashboardController {
     }
     
     @RequestMapping(value = "/adminDashboardupdate/{id}", method = RequestMethod.GET)    
-    public String rec(@PathVariable("id") String id)
+    public String rec(@PathVariable("id") String id,Model model) throws URISyntaxException
     {
-    	System.out.println("syste"+id);
-    	HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-        HttpEntity <String> entity = new HttpEntity<String>(headers);
-        //HttpEntity entity = new HttpEntity(adminForm, headers);
-       
-       ResponseEntity<String> respones = restTemplate.exchange("http://localhost:8890/enableRec?id="+id, HttpMethod.GET,entity,String.class);
-        System.out.println(respones);
+    	
+        String pageName = null;
+    	String index=commDtService.isEnable(id);
+        
+         if(index.equals("true")) {
+
+     		List<RecProfile> products = commDtService.findByUser("");        
+             
+            
+             if(products.size()>0) {
+            	 model.addAttribute("products", products); 
+            	 pageName ="adminDashboard";
+             }else {
+            	 model.addAttribute("title", "Admin DashBoard"); 
+            	 model.addAttribute("erroe", "NO DATA FOUND"); 
+            	 pageName="dataError";
+             }
+        	 
+         }else {
+        	 model.addAttribute("title", "Admin DashBoard"); 
+        	 model.addAttribute("erroe", "NO DATA FOUND"); 
+        	 pageName="dataError"; 
+         }
+         
+         
+    	
+    	
+    	
      /*   if(bindingResult.hasErrors())
             return "adminDashboard";
         else
             return "adminDashboard";*/
-    	return "adminDashboardupdate";
+    	return pageName;
     	
     }
 }
