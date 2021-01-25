@@ -48,7 +48,7 @@
 
     <form:form  modelAttribute="companyForm" class="form-signin">
 
- 
+ 	
         <spring:bind path="companyName">
             <div class="form-group input-group ${status.error ? 'has-error' : ''}">
             		<div class="input-group-prepend">
@@ -59,12 +59,12 @@
                 <form:errors path="companyName"></form:errors>
             </div>
         </spring:bind>
-    <spring:bind path="companyEmail">
+    <spring:bind path="companyemail">
     <div class="form-group input-group">
     	<div class="input-group-prepend">
 		    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
 		 </div>
-        <form:input path="companyEmail" class="form-control" placeholder="Company Email " type="email"></form:input>
+        <form:input path="companyemail" class="form-control" placeholder="Company Email " type="email"></form:input>
     </div> <!-- form-group// -->
     </spring:bind>
     <spring:bind path="country">

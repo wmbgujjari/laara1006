@@ -172,8 +172,11 @@
 <!-- /container -->
 
 <br>
-<c:forEach items="${profile}" var="profile" >
+
 <div class="col-sm-6" style="float:left">
+
+<c:forEach items="${profile}" var="profile" >
+
     <div class="card card-cascade wider">
                   <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
               <div class="icon"><img class="icon" src="${contextPath}/images/prasad.jpg" > </div>
@@ -191,8 +194,11 @@
         <h6 class="title">Contact us: 9347039290</h6>
         <a href="#" class="btn btn-primary">Apply</a>
       </div>
+      <br></br>
+         </c:forEach>
+         
    </div> 
-   </c:forEach>
+
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" ></script>
 <script src="${contextPath}/resources/js/popper.min.js" ></script>
 <script src="${contextPath}/resources/js/bootstrap.min.js"></script>

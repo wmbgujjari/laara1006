@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.harleeninfo.venkatsai.jobs.entity.OtpUser;
 import com.harleeninfo.venkatsai.jobs.entity.User;
 import com.harleeninfo.venkatsai.jobs.repository.RoleRepository;
 import com.harleeninfo.venkatsai.jobs.repository.UserRepository;
@@ -29,5 +30,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User findByUsername(String username) {
 		return userRepository.findByUsername(username);
+	}
+
+	@Override
+	public void saveotp(OtpUser user) {
+		
+		userRepository.save(user);
 	}
 }
