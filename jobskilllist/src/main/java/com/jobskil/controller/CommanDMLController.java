@@ -29,6 +29,7 @@ public class CommanDMLController {
 			comm.setStatus("flase");	
 			comm.setError("Somthing weant wrog try again......");
 			// TODO: handle exception
+			System.out.println("raju    ");
 		}
 		//comm.setRespons(rec);
 		return comm;
